@@ -6,6 +6,16 @@ This system implements a distributed semantic caching layer to intercept redunda
 
 ---
 
+## 🛠️ Tech Stack
+Backend: Python, FastAPI
+
+Agentic Framework: LangChain, LangGraph
+
+Databases: Neo4j (Graph), Redis Stack (Vector/Cache)
+
+Infrastructure: Docker, Docker Compose
+---
+
 ## 🚀 Key Features
 
 * **Natural Language to Cypher:** Utilizes a deterministic state machine to parse user intent and generate valid Neo4j graph queries.
@@ -52,3 +62,17 @@ System performance was validated using a synthetic enterprise dataset consisting
 ```bash
 git clone [https://github.com/uvsrahul1234/enterprise-graph-agent.git](https://github.com/uvsrahul1234/enterprise-graph-agent.git)
 cd enterprise-graph-agent
+```
+
+### 2. Spin Up Infrastructure
+Start the Neo4j graph database and Redis cache locally.
+```bash
+docker-compose up -d
+```
+
+### 3. Install Dependencies
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+pip install -r requirements.txt
+```
