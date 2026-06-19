@@ -14,6 +14,7 @@ Agentic Framework: LangChain, LangGraph
 Databases: Neo4j (Graph), Redis Stack (Vector/Cache)
 
 Infrastructure: Docker, Docker Compose
+
 ---
 
 ## 🚀 Key Features
@@ -75,4 +76,36 @@ docker-compose up -d
 python -m venv venv
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 pip install -r requirements.txt
+```
+
+### 4. Seed the Graph Database
+Generate the synthetic enterprise ecosystem (Microservices, Teams, Employees) to populate Neo4j.
+```bash
+python seed_graph.py
+```
+
+### 5. Run the FastAPI Server
+```bash
+export OPENAI_API_KEY="your-api-key-here"
+uvicorn main:app --reload --port 8000
+```
+
+## 🧪 API Usage
+Endpoint: POST /api/v1/query
+
+Request:
+```bash
+{
+  "query": "Which team owns the BillingService?"
+}
+```
+
+Response (Cache Miss - 2.4s):
+```bash
+{
+  "answer": "The Platform Engineering team owns the BillingService.",
+  "source": "neo4j_graph",
+  "cypher_executed": "MATCH (t:Team)-[:OWNS]->(s:Service {name: 'BillingService'}) RETURN t.name",
+  "latency_ms": 2453
+}
 ```
