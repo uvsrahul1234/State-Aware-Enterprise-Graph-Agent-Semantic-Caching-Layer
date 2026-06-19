@@ -109,3 +109,19 @@ Response (Cache Miss - 2.4s):
   "latency_ms": 2453
 }
 ```
+
+Request (Semantically Similar):
+```bash
+{
+  "query": "Can you tell me who runs the billing service?"
+}
+```
+
+Response (Cache Hit - 12ms):
+```bash
+{
+  "answer": "The Platform Engineering team owns the BillingService.",
+  "source": "redis_semantic_cache",
+  "latency_ms": 12
+}
+```
